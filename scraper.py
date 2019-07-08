@@ -49,7 +49,7 @@ class Scraper:
 
         artists = get_genre_artists(genre)
         artists_songs = self.fetch_pool.imap_unordered(get_artist_songs, artists)
-        for songs in tqdm(artists_songs):
+        for songs in artists_songs:
             self.download_pool.imap(
                 lambda x: urlretrieve(x[1], str(x[0]) + ".mid"), songs
             )
